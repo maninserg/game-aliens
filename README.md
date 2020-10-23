@@ -1,2 +1,2 @@
 # game-aliens
-I'm Manin Sergei. It's my game in the style "Space shooter"
+That's my game in the style "The :space shooter"
