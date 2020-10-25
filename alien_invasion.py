@@ -6,6 +6,8 @@ from settings import Settings
 
 from ship import Ship
 
+from alien import Alien
+
 import game_functions as gf
 
 def run_game():
@@ -23,6 +25,8 @@ def run_game():
     ship = Ship(ai_settings, screen)
     #Create group of bullets
     bullets = Group()
+    #Create alien
+    alien = Alien(ai_settings, screen)
     # Start main cycle of program
     while True:
         #Look events of keyboard and mouse
@@ -30,7 +34,7 @@ def run_game():
         ship.update()
         gf.update_bullets(bullets)
         #For every step refresh screen
-        gf.update_screen(ai_settings, screen, ship, bullets)
+        gf.update_screen(ai_settings, screen, ship, alien, bullets)
 
 run_game()
 
