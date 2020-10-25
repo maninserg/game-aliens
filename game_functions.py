@@ -37,6 +37,18 @@ def check_events(ai_settings, screen, ship, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
 
+def update_bullets(bullets):
+    """ Update positions of bullets and kill bullets than outside screen
+
+    """
+    #Update positions of bullets
+    bullets.update()
+
+    #Delete bullets than outside screen
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+
 def update_screen(ai_settings, screen, ship, bullets):
     """Update screen and create a new screen
 

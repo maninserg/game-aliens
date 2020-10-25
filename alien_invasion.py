@@ -28,11 +28,7 @@ def run_game():
         #Look events of keyboard and mouse
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        bullets.update()
-        #Delete bullets than they have left screen
-        for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
+        gf.update_bullets(bullets)
         #For every step refresh screen
         gf.update_screen(ai_settings, screen, ship, bullets)
 
