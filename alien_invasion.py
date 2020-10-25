@@ -4,6 +4,8 @@ import pygame
 
 from settings import Settings
 
+from ship import Ship
+
 def run_game():
     """Initialization game and create screen
 
@@ -15,6 +17,8 @@ def run_game():
         ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 
+    #Create ship
+    ship = Ship(screen)
 
     # Start main cycle of program
     while True:
@@ -24,6 +28,7 @@ def run_game():
                 sys.exit()
 
             screen.fill(ai_settings.bg_color) # For every step refresh screen
+            ship.blitme()
             pygame.display.flip()
 
 run_game()
