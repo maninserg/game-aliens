@@ -41,8 +41,8 @@ def check_events(ai_settings, screen, ship, bullets):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
 
-def update_bullets(bullets):
-    """ Update positions of bullets and kill bullets than outside screen
+def update_bullets(ai_settings, screen, ship, aliens, bullets):
+    """ Update positions of bullets and delete bullets than outside screen
 
     """
     #Update positions of bullets
@@ -52,6 +52,13 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+    #Check hits to aliens
+    #Delete bullets and aliens with hit
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    #Create a new fleet of aliens
+    if len(aliens) == 0:
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, aliens)
 
 def get_number_aliens_x(ai_settings, alien_width):
     """Calculate the amount of aleins in row
