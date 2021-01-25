@@ -1,2 +1,2 @@
 # game_alien
-That's my game in the style "The space shooter"
+That is the game in the style "The space shooter"
