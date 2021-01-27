@@ -8,7 +8,7 @@ class Ship():
         self.screen = screen
         self.ai_settings = ai_settings
         #Load image of ship and create rectagle
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load('images/rocket.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         #A new ship will be created in the down edge of screen

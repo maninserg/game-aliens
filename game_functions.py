@@ -65,7 +65,7 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens,
         create_fleet(ai_settings, screen, ship, aliens)
         ship.center_ship()
 
-def update_bullets(ai_settings, screen, ship, aliens, bullets):
+def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
     """ Update positions of bullets and delete bullets than outside screen
 
     """
@@ -75,12 +75,18 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+    check_bullet_alien_collisions(ai_settings, screen, stats, sb,
+                                  ship, aliens, bullets)
 
-def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+def check_bullet_alien_collisions(ai_settings, screen, stats, sb,
+                                  ship, aliens, bullets):
     """ Check hits to aliens
     Delete bullets and aliens with hit """
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if collisions:
+        for aliens in collisions.values():
+            stats.score += ai_settings.alien_points
+            sb.prep_score()
     #Create a new fleet of aliens
     if len(aliens) == 0:
         bullets.empty()
@@ -100,7 +106,7 @@ def get_number_rows(ai_settings, ship_height, alien_height):
 
     """
     available_space_y = (ai_settings.screen_height -
-                         3 * alien_height - ship_height)
+                         10 * alien_height - ship_height)
     number_rows = int(available_space_y / (2 * alien_height))
     return number_rows
 
@@ -167,7 +173,8 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     #Check aliens get to the down of the screen
     check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
 
-def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
+def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
+                  play_button):
     """Update screen and create a new screen
 
     """
@@ -177,6 +184,8 @@ def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    # Show count
+    sb.show_score()
     # Button "Play" is showed if game is not active
     if not stats.game_active:
         play_button.draw_button()
