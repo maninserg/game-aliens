@@ -17,13 +17,15 @@ class Settings():
         #Settings of bullet
         self.bullet_width = 5
         self.bullet_height = 20
-        self.bullet_color = 60, 60, 60
-        self.bullets_allowed = 3
+        self.bullet_color = 255, 0, 0
+        self.bullets_allowed = 2
 
         #Settings of aliens
         self.fleet_drop_speed = 10
-
+        # Rate speed of game
         self.speedup_scale = 1.2
+        # Rate price of alien
+        self.score_scale = 1.5
 
         self.initialize_dynamic_settings()
 
@@ -42,5 +44,7 @@ class Settings():
         self.ship_speed_factor *= self.speedup_scale
         self.bullet_speed_factor *= self.speedup_scale
         self.alien_speed_factor *= self.speedup_scale
+
+        self.alien_points = int(self.alien_points * self.score_scale)
 
 
