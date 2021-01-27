@@ -27,7 +27,8 @@ def check_keyup_events(event, ship):
     elif event.key == pygame.K_LEFT:
         ship.moving_left = False
 
-def check_events(ai_settings, screen, ship, bullets):
+def check_events(ai_settings, screen, stats, play_button, ship, aliens,
+                 bullets):
     """Process touchs of buttom keyboard and mouse
 
     """
@@ -38,6 +39,29 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keydown_events(event, ai_settings, screen, ship, bullets)
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, ship)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            check_play_button(ai_settings, screen, stats, play_button, ship,
+                              aliens, bullets, mouse_x, mouse_y)
+
+def check_play_button(ai_settings, screen, stats, play_button, ship, aliens,
+                      bullets, mouse_x, mouse_y):
+    """ Start new game for touch button Play
+
+    """
+    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+    if button_clicked and not stats.game_active:
+        # Don't show a mouse
+        pygame.mouse.set_visible(False)
+        # Reset game's statics
+        stats.reset_stats()
+        stats.game_active = True
+        # Reset list aliens and bullets
+        aliens.empty()
+        bullets.empty()
+        # Create a new flot and ship to the center
+        create_fleet(ai_settings, screen, ship, aliens)
+        ship.center_ship()
 
 def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """ Update positions of bullets and delete bullets than outside screen
@@ -45,7 +69,6 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
     """
     #Update positions of bullets
     bullets.update()
-
     #Delete bullets than outside screen
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
@@ -141,7 +164,7 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     #Check aliens get to the down of the screen
     check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
 
-def update_screen(ai_settings, screen, ship, aliens, bullets):
+def update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button):
     """Update screen and create a new screen
 
     """
@@ -151,6 +174,9 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    # Button "Play" is showed if game is not active
+    if not stats.game_active:
+        play_button.draw_button()
     #Show the last screen
     pygame.display.flip()
 
@@ -170,4 +196,5 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         sleep(0.5)
     else:
         stats.game_active = False
+        pygame.mouse.set_visible(True)
 
