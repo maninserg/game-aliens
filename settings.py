@@ -7,8 +7,8 @@ class Settings():
 
         """
         #Settings of screen
-        self.screen_width = int(1200 * 0.8)
-        self.screen_height = int(800 * 0.8)
+        self.screen_width = int(1200 * 1)
+        self.screen_height = int(800 * 1)
         self.bg_color = (0, 0, 0)
 
         #Settings of ship
