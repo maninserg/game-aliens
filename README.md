@@ -9,6 +9,11 @@
 <hr>
 
 <p align="center">
-  <img src="screenshots/show_game.gif"/>
-<p align="center">The list of preinstall languages in the file "settings.py"<p align="center">
+  <img src="screenshots/main_menu.png"/>
+<p align="center">The main menu<p align="center">
+</p>
+
+<p align="center">
+  <img src="screenshots/process_game.png"/>
+<p align="center">The gaming<p align="center">
 </p>
