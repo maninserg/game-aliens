@@ -120,7 +120,7 @@ def change_fleet_direction(ai_settings, aliens):
         alien.rect.y += ai_settings.fleet_drop_speed
     ai_settings.fleet_direction *= -1
 
-def update_aliens(ai_settings, ship, aliens):
+def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     """Check attaiment fleet to the edge of screen, update all aliens
 
     """
@@ -128,7 +128,7 @@ def update_aliens(ai_settings, ship, aliens):
     aliens.update()
     # Check collision "aliens-ship"
     if pygame.sprite.spritecollideany(ship, aliens):
-        print("Ship hit!!!")
+        ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
 
 def update_screen(ai_settings, screen, ship, aliens, bullets):
     """Update screen and create a new screen
@@ -142,4 +142,45 @@ def update_screen(ai_settings, screen, ship, aliens, bullets):
     aliens.draw(screen)
     #Show the last screen
     pygame.display.flip()
+
+def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
+    """ Process the hit the ship with the alien """
+    # Decrease ship_left
+    stats.ship_left -= 1
+    # Clean lists of aliens and bullets
+    aliens.empty()
+    bullets.empty()
+    # Create a new flot of alieans and place the ship to the center of the
+    # screen
+    create_fleet(ai_settings, screen, ship, aliens)
+    ship.center_ship()
+    # Pause
+    sleep(0.5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

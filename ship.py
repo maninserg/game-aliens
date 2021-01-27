@@ -33,3 +33,7 @@ class Ship():
 
         """
         self.screen.blit(self.image, self.rect)
+
+    def center_ship(self):
+        """ Place the ship to the center of the down part of the screen """
+        self.center = self.screen_rect.centerx
