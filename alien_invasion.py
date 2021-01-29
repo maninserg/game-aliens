@@ -24,6 +24,7 @@ def run_game():
     screen = pygame.display.set_mode((
         ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
+    bg = pygame.image.load("images/galaxy.png")
 
     # Create button "Play"
     play_button = Button(ai_settings, screen, "Play")
@@ -50,7 +51,7 @@ def run_game():
                          bullets)
         #For every step refresh screen
         gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
-                         play_button)
+                         play_button, bg)
 
 run_game()
 

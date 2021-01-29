@@ -32,9 +32,9 @@ class Settings():
     def initialize_dynamic_settings(self):
         """ Initialize settings which are changed in the game's process """
 
-        self.ship_speed_factor = 3
-        self.bullet_speed_factor = 3
-        self.alien_speed_factor = 1
+        self.ship_speed_factor = 10
+        self.bullet_speed_factor = 6
+        self.alien_speed_factor = 3
         #fleet_direction = 1 is move to the right, -1 is move to the left
         self.fleet_direction = 1
         self.alien_points = 50

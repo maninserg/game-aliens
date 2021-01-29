@@ -183,12 +183,14 @@ def update_aliens(ai_settings, screen, stats, sb, ship, aliens, bullets):
     check_aliens_bottom(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
 def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
-                  play_button):
+                  play_button, bg):
     """Update screen and create a new screen
 
     """
     #For every step circle it refresh screen
-    screen.fill(ai_settings.bg_color)
+
+    #screen.fill(ai_settings.bg_color)
+    screen.blit(bg, (0, 0))
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
