@@ -1,14 +1,14 @@
 # game_alien
 
-**About:** That is the game in the style "The classic space shooter"
+That is the game in the style "The classic space shooter"
 
-<hr>
 
-**Description:** Use a buttom "space" for the fire and buttoms "left" and "right" on your keyboard for the moving to the left, to the right and be strong and brave in the war with alien invaders. People of the Earth hope for you!!!
+## Description
 
-<hr>
+Use a buttom "space" for the fire and buttoms "left" and "right" on your keyboard for the moving to the left, to the right and be strong and brave in the war with alien invaders. People of the Earth hope for you!!!
 
-<b>Installation for Linux*:</b>
+
+## Installation for Linux*
 
 1. Clone the repository (or download the zip file and extract it):
 
@@ -32,9 +32,8 @@
 
 <i>*The installation for MacOS or Windows can be other</i>
 
-<hr>
 
-**Screenshots:**
+## Screenshots
 
 <p align="center">
   <img src="screenshots/main_menu.png"/>
